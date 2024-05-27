@@ -1,0 +1,21 @@
+.feedback {border: 2px solid, goldenrod;
+           border-radius: 15px;
+           margin: 30px; padding: 20px;
+           display: inline-block;
+           box-shadow: 1px 2px 5px 0px rgb(175, 179, 145);}
+
+.listFeedback {list-style-type: none; padding-inline-start: 0px;
+               display: flex;  flex-direction: row; 
+               justify-content: center; 
+               gap:30px; padding: 10px 0px;
+               border-radius: 15px;}
+
+.listFeedback li button {width: 70px;}           
+.listFeedback li button:hover {background-color: yellow; border-radius: 5px; width: 70px;}
+
+.stats {margin-top: 40px; border: 2px solid, goldenrod; border-radius: 15px;padding: 20px;}
+.stats ul{list-style-type: none; padding-inline-start: 0px; margin-top: 20px;}
+
+.stats ul li {margin-top: 10px}
+
+h2{color: red}
