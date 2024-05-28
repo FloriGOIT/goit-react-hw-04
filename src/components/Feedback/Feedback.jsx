@@ -1,6 +1,6 @@
 import { OptionsFeedback } from "./FeedbackComponents/OptionsFeedback";
 import { StatsFeedback } from "./FeedbackComponents/StatsFeedback";
-import css from "../Feedback/FeedbackComponents/ZZZ.module.css"
+import css from "../Feedback/FeedbackComponents/ZZZfeed.module.css"
 import { useState, useEffect } from "react";
 
 export const Feedback = () =>

@@ -1,4 +1,4 @@
-import css from "./ZZZ.module.css";
+import css from "./ZZZfeed.module.css";
 import PropTypes from "prop-types";
 
 export const StatsFeedback = ({allStatsArr}) =>
