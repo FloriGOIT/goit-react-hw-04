@@ -2,9 +2,9 @@ import { OptionsFeedback } from "./FeedbackComponents/OptionsFeedback";
 import { StatsFeedback } from "./FeedbackComponents/StatsFeedback";
 import css from "../Feedback/FeedbackComponents/ZZZfeed.module.css"
 import { useState, useEffect } from "react";
-
-export const Feedback = ({visibility}) =>
-{  const [visible, setVisible] = useState(true)
+import PropTypes from "prop-types"
+export const Feedback = ({number}) =>
+{  
    const [good , setGood] = useState( { type: "Good", clicks: 0 });
    const [bad, setBad] =  useState( { type: "Bad", clicks: 0 });
    const [neutral, setNeutral] = useState({ type: "Neutral", clicks: 0 });
@@ -24,17 +24,14 @@ export const Feedback = ({visibility}) =>
                     let percentCalc = Math.round(good.clicks /totalClicks * 100);
                     setPercentage({ type: "Positive feedback", clicks: `${percentCalc} %` })},
                     [good,bad,neutral]);
-    const handleCloseExercise = () => {setVisible(false);}
    
-  if(visible){ return (<div className={css.feedback} >
-                        <button className={css.closeExercise} onClick={handleCloseExercise}>Next</button>
+  if(number === 1){ return (<div className={css.feedback} >
                         <h3>Please leave us your feedback</h3>
                         <OptionsFeedback  allOptionsArr={allOptions} increment={handleIncrement}/> 
                         {total.clicks === 0 ? <h2>No feedback given</h2>: <StatsFeedback allStatsArr={allStats}/>}
                        </div>)}
 }
 
-//const [options, setOptions] = useState([{type: "Good", clicks: 0}, 
-//                                       {type: "Bad", clicks: 0},
-//                                       {type: "Neutral", clicks: 0},])
-//const handleIncrement = (optionType) => {setOptions(prevOptions => prevOptions.map(opt => opt === optionType ? {...opt, clicks: opt.clicks + 1} : opt))}
+Feedback.propType = {number: PropTypes.number}
+
+

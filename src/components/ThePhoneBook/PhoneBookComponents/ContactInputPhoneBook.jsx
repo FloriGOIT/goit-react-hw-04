@@ -1,6 +1,8 @@
 import css from "./PhoneBook.module.css";
 import { useState } from "react";
 import { nanoid } from "nanoid";
+import PropTypes from "prop-types"
+
 
 export const ContactInputPhoneBook = ({addContact}) =>
     {
@@ -42,4 +44,4 @@ export const ContactInputPhoneBook = ({addContact}) =>
     }
 
 
-    //temporary 
+ContactInputPhoneBook.propType = {addContact: PropTypes.func}

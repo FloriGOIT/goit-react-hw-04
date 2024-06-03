@@ -1,4 +1,5 @@
 import css from "./PhoneBook.module.css"
+import PropTypes from "prop-types"
 
 
 export const ListPhoneBook = ({contactsList, filter,deleteElem, children}) =>
@@ -21,3 +22,8 @@ export const ListPhoneBook = ({contactsList, filter,deleteElem, children}) =>
              </div>)
     
     }
+
+ListPhoneBook.propType = {contactsList: PropTypes.arrayOf(PropTypes.object),
+                          filter: PropTypes.string,
+                          deleteElem: PropTypes.func,
+                          children: PropTypes.node}

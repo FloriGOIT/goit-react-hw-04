@@ -1,9 +1,10 @@
 import css from "./ZZZfeed.module.css";
 import PropTypes from "prop-types";
 
+
 export const OptionsFeedback = ({allOptionsArr, increment}) =>
     { 
-     const confirmOption = (e) => {let optionType = e.target.name; console.log(optionType); increment(optionType)}
+     const confirmOption = (e) => {let optionType = e.target.name;  increment(optionType)}
       
      return(<ul className={css.listFeedback}>
                 {allOptionsArr.map((option, index) => <li key={index} onClick={confirmOption}>
@@ -14,3 +15,7 @@ export const OptionsFeedback = ({allOptionsArr, increment}) =>
 
 OptionsFeedback.propTypes = {allOptionsArr: PropTypes.arrayOf(PropTypes.object),
                             increment: PropTypes.func}
+
+
+OptionsFeedback.propTypes={allOptionsArr: PropTypes.arrayOf(PropTypes.object),
+                           increment: PropTypes.func}

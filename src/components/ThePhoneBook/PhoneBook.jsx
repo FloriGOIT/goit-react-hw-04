@@ -3,10 +3,11 @@ import { ContactInputPhoneBook } from "./PhoneBookComponents/ContactInputPhoneBo
 import {ListPhoneBook} from "./PhoneBookComponents/ListPhoneBook"
 import css from "./PhoneBookComponents/PhoneBook.module.css";
 import { FilterPhoneBook } from "./PhoneBookComponents/FilterPhoneBook.jsx"
+import PropTypes from "prop-types"
 
 
-export const PhoneBook = () =>
-{  const [visible, setVisible] = useState(true);
+export const PhoneBook = ({number}) =>
+{  
    const storedContacts = () => {const stored = localStorage.getItem("Contact List:"); 
                                  return stored ? JSON.parse(stored) : [];}       
    const [filterInput, setFilterInput] = useState("");
@@ -23,11 +24,9 @@ export const PhoneBook = () =>
    const handleFiltering = (input) => {setFilterInput(input);}
 
    const handleDelete = (itemByID) => {const filteredContactList = contactS.filter(el => el.id !== itemByID);
-                                       setContactS(filteredContactList);}
-   const handleCloseExercise = () => {setVisible(visible => !visible)}                                   
+                                       setContactS(filteredContactList);}                               
 
-  if(visible){return(<div className={css.phonebook}>
-                        <button className={css.closeExercise} onClick={handleCloseExercise}>Next</button>
+   if(number === 2){return(<div className={css.phonebook}>
                         <h2>Phonebook</h2>
                         <ContactInputPhoneBook addContact={handleNewContact}/>
                         {contactS.length === 0 && <h3>No contacts in your list </h3>}
@@ -37,3 +36,5 @@ export const PhoneBook = () =>
                     </div>)}
 
 }
+
+PhoneBook.propType = {number: PropTypes.number}

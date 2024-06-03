@@ -1,4 +1,5 @@
 import css from "./PhoneBook.module.css";
+import PropTypes from "prop-types"
 
 export const FilterPhoneBook = ({bringFilterInput}) =>
     {   
@@ -11,3 +12,5 @@ export const FilterPhoneBook = ({bringFilterInput}) =>
                </div>)
     
     }
+
+FilterPhoneBook.propType = {bringFilterInput: PropTypes.func}
