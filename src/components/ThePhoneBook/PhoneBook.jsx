@@ -6,7 +6,7 @@ import { FilterPhoneBook } from "./PhoneBookComponents/FilterPhoneBook.jsx"
 
 
 export const PhoneBook = () =>
-{  
+{  const [visible, setVisible] = useState(true);
    const storedContacts = () => {const stored = localStorage.getItem("Contact List:"); 
                                  return stored ? JSON.parse(stored) : [];}       
    const [filterInput, setFilterInput] = useState("");
@@ -24,14 +24,16 @@ export const PhoneBook = () =>
 
    const handleDelete = (itemByID) => {const filteredContactList = contactS.filter(el => el.id !== itemByID);
                                        setContactS(filteredContactList);}
+   const handleCloseExercise = () => {setVisible(visible => !visible)}                                   
 
-  return(<div className={css.phonebook}>
-            <h2>Phonebook</h2>
-            <ContactInputPhoneBook addContact={handleNewContact}/>
-            {contactS.length === 0 && <h3>No contacts in your list </h3>}
-            {contactS.length !== 0 && <ListPhoneBook contactsList={contactS} filter={filterInput} deleteElem={handleDelete}>
-                <FilterPhoneBook bringFilterInput={handleFiltering}/>
-            </ListPhoneBook>}
-        </div>)
+  if(visible){return(<div className={css.phonebook}>
+                        <button className={css.closeExercise} onClick={handleCloseExercise}>Next</button>
+                        <h2>Phonebook</h2>
+                        <ContactInputPhoneBook addContact={handleNewContact}/>
+                        {contactS.length === 0 && <h3>No contacts in your list </h3>}
+                        {contactS.length !== 0 && <ListPhoneBook contactsList={contactS} filter={filterInput} deleteElem={handleDelete}>
+                            <FilterPhoneBook bringFilterInput={handleFiltering}/>
+                        </ListPhoneBook>}
+                    </div>)}
 
 }
