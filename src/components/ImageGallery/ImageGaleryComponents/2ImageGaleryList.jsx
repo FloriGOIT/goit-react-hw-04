@@ -1,14 +1,14 @@
+import { createContext } from "react"
+import { ImageGaleryItems } from "./3ImageGaleryItems"
+import css from "./ZZZgallery.module.css"
 
-import { nanoid } from "nanoid"
+export const ListContext = createContext()
 
-export const ImageGaleryList = ({itemsListupload}) =>
-{ 
-   
-    return (<ul>
-               {itemsListupload !== null 
-                   && 
-                itemsListupload.map(elem => <li key={nanoid()}>
-                                                 <img src={elem.webformatURL} alt={elem.tags}/>
-                                            </li>)}
-            </ul>)
-}
+export const ImageGaleryList = ({itemsListupload, largeImg}) =>
+{ return(<ListContext.Provider value={{itemsListupload, largeImg}}>
+            <ul className={css.listWrapper}>
+               <ImageGaleryItems/>
+            </ul>
+        </ListContext.Provider>)}
+
+
