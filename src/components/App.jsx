@@ -11,7 +11,7 @@ export const App = () =>
            {numberEx > 0 && numberEx < 3 && (<>
                                <button className="general" onClick={increment}> ⏭️
                                </button>
-                               <br /> 
+                               <br/> 
                              </>)}
            <Feedback number={numberEx}/>
            <PhoneBook number={numberEx}/>
