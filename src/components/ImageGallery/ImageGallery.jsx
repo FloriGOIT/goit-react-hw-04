@@ -40,6 +40,8 @@ export const ImageGallery = ({number}) =>
       fetching();
     },[error,itemsList, basicSite, pageNr])
 
+    useEffect(()=>{setLoading(false)},[])
+
   if(number === 3)
   {return (<div className={css.gallery}>
               <SearchBar inputSearch={handleSearch}/>
