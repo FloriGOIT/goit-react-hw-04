@@ -25,6 +25,8 @@ export const ImageGallery = ({number}) =>
    
   useEffect(()=>
     { 
+      if(!basicSite){return};
+
       const fetching = () =>
         {setLoading(true);
          const site = `${basicSite}&page=${pageNr}`;
