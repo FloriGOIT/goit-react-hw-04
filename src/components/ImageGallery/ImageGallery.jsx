@@ -12,7 +12,7 @@ export const ImageGallery = ({number}) =>
   const [basicSite, setBasicSite] = useState("");
   const [pageNr, setPageNr] = useState(1);
   const [itemsList, setItemsList] = useState([]);
-  const [error, setError] = useState("There seems to be an issue with the link, please check.");
+  const [errory] = useState("There seems to be an issue with the link, please check.");
   const [loading, setLoading] = useState(true);
   const [largeImg, setLargeImg] = useState("");
 
@@ -21,26 +21,25 @@ export const ImageGallery = ({number}) =>
   const handleLargeImg = (largeImageURL) => {setLargeImg(largeImageURL)}
   const handleCloseModal = (elem) => {if(elem === "DIV"){setLargeImg("")}}
 
-  
+
    
   useEffect(()=>
     { 
-      if (!basicSite) return;
       const fetching = () =>
         {setLoading(true);
          const site = `${basicSite}&page=${pageNr}`;
-         fetch(site).then((res) => {if(!res.ok){alert(error)}
+         fetch(site).then((res) => {if(!res.ok){alert(errory)}
                                    else{return res.json()}})
                    .then((data) => {const newHit = data.hits;
                                     const arreyNewHit = newHit.map(({id, tags , webformatURL, largeImageURL}) => {return {id, tags , webformatURL, largeImageURL}});
-                                    let list = [...itemsList, ...arreyNewHit];
-                                    setItemsList(list); setLoading(false);})
-                   .catch((error) => {setError(error);setLoading(false);})
+                                    setItemsList((prevItems) => [...prevItems, ...arreyNewHit]);
+                                    setLoading(false);})
+                   .catch((error) => {setLoading(false); return errory;})
         }
-      fetching();
-    },[error,itemsList, basicSite, pageNr])
 
-    useEffect(()=>{setLoading(false)},[])
+      fetching();
+    }
+    ,[basicSite, pageNr, errory])
 
   if(number === 3)
   {return (<div className={css.gallery}>
