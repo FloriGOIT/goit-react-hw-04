@@ -21,19 +21,24 @@ export const ImageGallery = ({number}) =>
   const handleLargeImg = (largeImageURL) => {setLargeImg(largeImageURL)}
   const handleCloseModal = (elem) => {if(elem === "DIV"){setLargeImg("")}}
 
-  const fetching = () =>
-    {setLoading(true);
-     const site = `${basicSite}&page=${pageNr}`;
-     fetch(site).then((res) => {if(!res.ok){alert(error)}
-                               else{return res.json()}})
-               .then((data) => {const newHit = data.hits;
-                                const arreyNewHit = newHit.map(({id, tags , webformatURL, largeImageURL}) => {return {id, tags , webformatURL, largeImageURL}});
-                                let list = [...itemsList, ...arreyNewHit];
-                                setItemsList(list); setLoading(false);})
-               .catch((error) => {setError(error);setLoading(false);})
-    }
+  
    
-  useEffect(()=>{fetching();},[basicSite, pageNr])
+  useEffect(()=>
+    { 
+      if (!basicSite) return;
+      const fetching = () =>
+        {setLoading(true);
+         const site = `${basicSite}&page=${pageNr}`;
+         fetch(site).then((res) => {if(!res.ok){alert(error)}
+                                   else{return res.json()}})
+                   .then((data) => {const newHit = data.hits;
+                                    const arreyNewHit = newHit.map(({id, tags , webformatURL, largeImageURL}) => {return {id, tags , webformatURL, largeImageURL}});
+                                    let list = [...itemsList, ...arreyNewHit];
+                                    setItemsList(list); setLoading(false);})
+                   .catch((error) => {setError(error);setLoading(false);})
+        }
+      fetching();
+    },[error,itemsList, basicSite, pageNr])
 
   if(number === 3)
   {return (<div className={css.gallery}>
